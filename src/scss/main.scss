@@ -1,3 +1,7 @@
+//Variables
+@import 'variables/color.scss';
+
+
 //Pages 
 
 @import 'pages/home-page.scss';
@@ -10,3 +14,6 @@
 @import 'components/collection-item.scss';
 @import 'components/collection-preview.scss';
 @import 'components/header.scss';
+@import 'components/form-input.scss';
+@import 'components/button.scss';
+@import 'components/sign-in.scss';
