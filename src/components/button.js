@@ -1,7 +1,7 @@
 import React from "react";
 
-const Button = ({ children, ...otherProps }) => {
-  return <button className='custom-button'>{children}</button>;
+const Button = ({ children,isGooleSignIN, ...otherProps }) => {
+  return <button className={`${isGooleSignIN ? "google-sigin" : ""} custom-button`} {...otherProps}>{children}</button>;
 };
 
 export default Button;

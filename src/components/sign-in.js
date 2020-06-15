@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormInput from "../components/form-input";
-import Button from '../components/button';
+import Button from "../components/button";
+import { SignInWithGoogle } from "../firebase/firebase.utils";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -39,7 +40,10 @@ const SignIn = () => {
           handChangle={handleChange}
           required
         />
-        <Button type='submit' >Sign in</Button>
+        <div className='button'>
+          <Button type='submit'>Sign in</Button>
+          <Button onClick={SignInWithGoogle} isGooleSignIN>Sign in with Google</Button>
+        </div>
       </form>
     </div>
   );
