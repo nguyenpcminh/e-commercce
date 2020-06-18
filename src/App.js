@@ -5,13 +5,14 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up';
 import HomePage from "./pages/home-page";
 import ShopPage from "./pages/shop/shop-page";
 import Header from './components/header';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfile } from './firebase/firebase.utils';
 
 function App() {
   const [currentUser,setCurrentUser] = useState(null);
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged(async user => {
       setCurrentUser(user);
+      createUserProfile(user);
     });
   },[]);
 
