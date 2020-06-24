@@ -10,12 +10,21 @@ import { auth, createUserProfile } from './firebase/firebase.utils';
 function App() {
   const [currentUser,setCurrentUser] = useState(null);
   useEffect(() => {
-    auth.onAuthStateChanged(async user => {
-      setCurrentUser(user);
-      await createUserProfile(user);
-      console.log(currentUser);
+    auth.onAuthStateChanged(async userAuth => {
+      if(userAuth){
+        const userRef = await createUserProfile(userAuth);
+        userRef.onSnapshot(snapshot => {
+            setCurrentUser({
+              id: snapshot.id,
+              ...snapshot.data(),
+            })
+            console.log(snapshot.data());
+        })
+      }
+
+    setCurrentUser(userAuth);
     });
-  });
+  },[]);
 
   return (
     <div>

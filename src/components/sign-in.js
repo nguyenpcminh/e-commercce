@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormInput from "../components/form-input";
 import Button from "../components/button";
-import { SignInWithGoogle } from "../firebase/firebase.utils";
+import { SignInWithGoogle, auth } from "../firebase/firebase.utils";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -9,8 +9,14 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEmail("");
-    setPassword("");
+    try {
+      auth.signInWithEmailAndPassword(email,password);
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.log(error.message);
+    }
+
   };
 
   const handleChange = (e) => {
@@ -41,7 +47,7 @@ const SignIn = () => {
           required
         />
         <div className='button'>
-          <Button type='submit'>Sign in</Button>
+          <Button type='submit' onSubmit={handleSubmit}>Sign in</Button>
           <Button onClick={SignInWithGoogle} isGooleSignIN>Sign in with Google</Button>
         </div>
       </form>
