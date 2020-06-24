@@ -26,15 +26,16 @@ export const createUserProfile = async (userAuth, additionData) => {
 
     try {
       await userRef.set({
-        displayName,
+        displayName : !displayName ? additionData : displayName,
         email,
         dateCreate,
-        ...additionData,
       });
     } catch (error) {
       console.log(error.message);
     }
   }
+
+  return userRef;
 };
 
 firebase.initializeApp(config);

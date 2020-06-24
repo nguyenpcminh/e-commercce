@@ -12,9 +12,10 @@ function App() {
   useEffect(() => {
     auth.onAuthStateChanged(async user => {
       setCurrentUser(user);
-      createUserProfile(user);
+      await createUserProfile(user);
+      console.log(currentUser);
     });
-  },[]);
+  });
 
   return (
     <div>
